@@ -3,4 +3,51 @@ name = "tanks_and_portals"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
+
+[target.wasm32-unknown-unknown]
+runner = "wasm-server-runner"
+
+
+[workspace.lints.clippy]
+type_complexity = "allow"
+doc_markdown = "warn"
+manual_let_else = "warn"
+undocumented_unsafe_blocks = "warn"
+redundant_else = "warn"
+match_same_arms = "warn"
+semicolon_if_nothing_returned = "warn"
+
+ptr_as_ptr = "warn"
+ptr_cast_constness = "warn"
+#TODO(rust 1.77): enable `ref_as_ptr`
+# ref_as_ptr = "warn"
+
+[workspace.lints.rust]
+unsafe_op_in_unsafe_fn = "warn"
+
+[lints]
+workspace = true
+
+[dependencies.bevy]
+version = "0.14.2"
+features = [
+  "wayland",
+  "webgl2",
+  "bevy_asset",         # Assets management
+  "bevy_audio",         # Builtin audio
+  "bevy_gilrs",         # Gamepad input support
+  "bevy_scene",         # Scenes management
+  "bevy_winit",         # Window management (cross-platform Winit backend)
+  "bevy_render",        # Rendering framework core
+  "bevy_core_pipeline", # Common rendering abstractions
+  "bevy_gizmos",        # Support drawing debug lines and shapes
+  "bevy_sprite",        # 2D (sprites) rendering
+  "bevy_pbr",           # 3D (physically-based) rendering
+  "bevy_gltf",          # GLTF 3D assets format support
+  "bevy_text",          # Text/font rendering
+  "bevy_ui",            # UI toolkit
+  "animation",          # Animation support
+  "tonemapping_luts",   # Support different camera Tonemapping modes (enables KTX2+zstd)
+  "default_font",       # Embed a minimal default font for text/UI
+]
+
